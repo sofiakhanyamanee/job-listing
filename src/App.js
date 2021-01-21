@@ -8,15 +8,12 @@ import StartPage from './pages/StartPage';
 const Wrapper = styled.div`
 display: flex; 
 justify-content: center;
-align-items: center;
 width: 100vw;
-height: 100vh;
+height: auto;
 background: #ede7e3;
 `
 
 function App() {
-
-
   return (
     <Wrapper>
         <Switch>

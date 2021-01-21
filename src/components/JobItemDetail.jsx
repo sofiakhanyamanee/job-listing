@@ -1,10 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background: #ede7e3;
+`
 
 export default function JobItemDetail({job}) {
 
 
   return (
-    <div>
+    <Wrapper>
 
       { job ? 
       <div>
@@ -15,6 +24,6 @@ export default function JobItemDetail({job}) {
 
       : <div>Loading</div> }
 
-    </div>
+    </Wrapper>
   )
 }

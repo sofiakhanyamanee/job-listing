@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import { JobContext } from '../contexts/JobContextProvider'
 
 const SearchBox = styled.div`
 display: flex;
@@ -45,14 +47,30 @@ cursor: pointer;
 }
 `
 
-
-
 export default function SearchInputField() {
+
+  const {search, setSearch, setJobs} = useContext(JobContext)
+  const history = useHistory()
+
+  function getJobList() {
+    
+    // const rep = search.replace(" ", "+")
+    // setSearch(rep)
+    
+    const url = `https://us-central1-wands-2017.cloudfunctions.net/githubjobs?description=${search}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => setJobs(data))
+
+    history.push("/jobs")
+  }
+  
+
   return (
     <SearchBox>
         <Heading>What type of job are you looking for? </Heading>
-        <Inputfield />
-        <SearchButton>Search</SearchButton>
+        <Inputfield type="text" value={search} onChange={e => setSearch(e.target.value)}/>
+        <SearchButton onClick={() => getJobList(search)}>Search</SearchButton>
     </SearchBox>
   )
 }

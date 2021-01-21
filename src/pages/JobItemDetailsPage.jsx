@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import JobItemDetail from '../components/JobItemDetail'
 
 
-
 export default function JobItemDetailsPage(props) {
   const id = props.match.params.id
   const [job, setJob] = useState(null)
@@ -20,7 +19,6 @@ export default function JobItemDetailsPage(props) {
   
   return (
     <div>
-      Detail page
       <JobItemDetail job={job} />
     </div>
   )

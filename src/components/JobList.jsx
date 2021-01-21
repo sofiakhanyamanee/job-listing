@@ -1,7 +1,8 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import JobItem from './JobItem'
+import { JobContext } from '../contexts/JobContextProvider'
 
 
 const Heading = styled.h1`
@@ -15,27 +16,15 @@ padding: 20px 0 20px 0;
 `
 
 export default function JobList() {
-  const [jobList, setJobList] = useState(null)
-
-  function getJobList() {
-    const url = "https://us-central1-wands-2017.cloudfunctions.net/githubjobs?description=javascript"
-    fetch(url)
-    .then(res => res.json())
-    .then(data => setJobList(data))
-  }
-
-
-  useEffect( () => {
-    getJobList()
-  }, [])
-
+  const {jobs} = useContext(JobContext)
   
   return (
     <div>
       <Heading>List of jobs</Heading>
 
-      {jobList && jobList.map(job => {
+      {jobs && jobs.map(job => {
         const jobco = job.id
+        
         return (
           <JobBox key={jobco}>
             <h3>{job.company} - {job.type}</h3>
