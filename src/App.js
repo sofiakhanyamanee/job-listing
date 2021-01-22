@@ -10,7 +10,6 @@ display: flex;
 justify-content: center;
 width: 100vw;
 height: auto;
-background: #ede7e3;
 `
 
 function App() {
