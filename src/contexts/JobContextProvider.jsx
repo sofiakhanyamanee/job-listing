@@ -5,11 +5,11 @@ export const JobContext = createContext({})
 export default function JobContextProvider({children}) {
   const [search, setSearch] = useState("")
   const [jobs, setJobs] = useState([])
-  const [history, setHistory] = useState({})
+  const [searched, setSearched] = useState([])
 
 
   return (
-    <JobContext.Provider value={{search, setSearch, jobs, setJobs, history, setHistory}}>
+    <JobContext.Provider value={{search, setSearch, jobs, setJobs, searched, setSearched}}>
       {children}
     </JobContext.Provider>
   )

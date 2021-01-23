@@ -7,12 +7,13 @@ import { BrowserRouter } from 'react-router-dom';
 import JobContextProvider from './contexts/JobContextProvider';
 
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <JobContextProvider>
-        <App />
-      </JobContextProvider>
+        <JobContextProvider>
+          <App />
+        </JobContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

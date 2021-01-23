@@ -41,8 +41,31 @@ margin: 20px auto;
 
 export default function JobList() {
   const {jobs} = useContext(JobContext)
+ 
+//  let i = 0;
+  // console.log(searched)
+  // console.log(jobs) 
+  // let arr = [{ word: jobs.company }];
+  
+  // add obj to array
+  // setHistory([...jobs, history])
+  // console.log(history)
+  // let i = 0;
 
+  // for(i = 0 ; i <jobs.length ;i++)
+  // {
+    
+  //   let obj = {
+  //     "company": jobs.company,
+  //     "type": jobs.type
+  //    }
 
+  //    setHistory(obj);
+     
+  //    i++;
+  //    console.log("history array: " + history);
+  // }
+  // console.log(jobs)
  
   return (
     
