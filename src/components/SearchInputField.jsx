@@ -56,7 +56,7 @@ background: #b3e9c7;
 `
 
 export default function SearchInputField() {
-  const {keyInput, setKeyInput, setJobs, searched, setSearched} = useContext(JobContext)    
+  const {keyInput, setKeyInput, setJobs, searchedArr, setSearchedArr, msg, setMsg} = useContext(JobContext)    
   const history = useHistory()
   
   function handle_fetch() {
@@ -66,26 +66,44 @@ export default function SearchInputField() {
     fetch(url)
     .then(res => res.json())
     .then(data => {
+
+      if (data.length === 0){
+
+        setMsg("No match")
+        console.log("no matching")
+        history.push("/")
+        
+      } else {
+
       let newObj = {
         keyword: keyInput,
         data
       }
-      let updated_array = [...searched, newObj];
-      setSearched(updated_array)
+      let updated_array = [...searchedArr, newObj];
+      setSearchedArr(updated_array)
       setJobs(data)
+      }
+
     })   
   }
 
   function getJobList() {
 
-    if (searched.length === 0) {
+    if ( keyInput.length === 0 || keyInput.trim() === "") {
+
+      history.push("/")
+      console.log("is empty")
+
+    } else {
+
+      if (searchedArr.length === 0) {
       
       console.log("fetching")
       handle_fetch();
 
     } else {
       
-      let oldSearchFound = searched.find(obj => obj.keyword === keyInput)
+      let oldSearchFound = searchedArr.find(obj => obj.keyword === keyInput)
       console.log("Found in context", oldSearchFound)
 
       if (oldSearchFound) {
@@ -96,17 +114,21 @@ export default function SearchInputField() {
       }
     }
     
-    console.log("My context array", searched)
-    history.push("/jobs")
+      console.log("My context array", searchedArr)
+      history.push("/jobs")
+
+    }
+
   }
 
   return (
     <SearchBox>
         <Heading>What type of job are you looking for? </Heading>
         <Box>
-        <Inputfield type="text" value={keyInput} onChange={e => setKeyInput(e.target.value)}/>
+        <Inputfield type="text" value={keyInput} onChange={e => setKeyInput(e.target.value)} />
         <SearchButton onClick={() => getJobList(keyInput)}>Search</SearchButton>
         </Box>
+        <h1>{msg}</h1>
     </SearchBox>
   )
 }
