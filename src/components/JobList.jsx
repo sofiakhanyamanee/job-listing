@@ -40,38 +40,15 @@ margin: 20px auto;
 `
 
 export default function JobList() {
-  const {jobs} = useContext(JobContext)
- 
-//  let i = 0;
-  // console.log(searched)
-  // console.log(jobs) 
-  // let arr = [{ word: jobs.company }];
-  
-  // add obj to array
-  // setHistory([...jobs, history])
-  // console.log(history)
-  // let i = 0;
 
-  // for(i = 0 ; i <jobs.length ;i++)
-  // {
-    
-  //   let obj = {
-  //     "company": jobs.company,
-  //     "type": jobs.type
-  //    }
-
-  //    setHistory(obj);
-     
-  //    i++;
-  //    console.log("history array: " + history);
-  // }
-  // console.log(jobs)
+  const { jobs } = useContext(JobContext)
  
   return (
     
     <Box>
       <Heading>Jobs that match</Heading>
       <Wrapper>
+
         {jobs.length > 0 ? jobs.map(job => {
           const jobco = job.id
           
@@ -87,7 +64,6 @@ export default function JobList() {
           )
         }) : <Heading>Loading...</Heading> }
 
-    
       </Wrapper>
     </Box>
   )

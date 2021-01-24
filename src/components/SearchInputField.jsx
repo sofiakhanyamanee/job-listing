@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { JobContext } from '../contexts/JobContextProvider'
 
-
-
 const SearchBox = styled.div`
 display: flex;
 justify-content: center;
@@ -58,57 +56,56 @@ background: #b3e9c7;
 `
 
 export default function SearchInputField() {
-
-  const {search, setSearch, setJobs, searched, setSearched} = useContext(JobContext)    
+  const {keyInput, setKeyInput, setJobs, searched, setSearched} = useContext(JobContext)    
   const history = useHistory()
   
   function handle_fetch() {
-    const str = search.replace(" ", "+");
-    const url = `https://us-central1-wands-2017.cloudfunctions.net/githubjobs?description=${str}`
+    const urlStr = keyInput.replace(" ", "+");
+    const url = `https://us-central1-wands-2017.cloudfunctions.net/githubjobs?description=${urlStr}`
+    
     fetch(url)
     .then(res => res.json())
     .then(data => {
-      let new_obj = {
-        keyword: search,
+      let newObj = {
+        keyword: keyInput,
         data
       }
-      let updated_array = [...searched, new_obj];
+      let updated_array = [...searched, newObj];
       setSearched(updated_array)
       setJobs(data)
     })   
   }
 
   function getJobList() {
-    // const str = search.replace(" ", "+");
-    
-    console.log("searched:", searched)
 
-    if (searched === null || searched.length === 0) {
-      console.log("searching1")
-      handle_fetch();   
+    if (searched.length === 0) {
+      
+      console.log("fetching")
+      handle_fetch();
+
     } else {
-      let oldSearchFound = searched.find(obj => obj.keyword === search)
-      console.log("oldSearchFound", oldSearchFound)
+      
+      let oldSearchFound = searched.find(obj => obj.keyword === keyInput)
+      console.log("Found in context", oldSearchFound)
 
       if (oldSearchFound) {
-        console.log("searching found in local")
         setJobs(oldSearchFound.data)
       } else {
-        console.log("not found")
+        console.log("not found in context, handle fetch")
         handle_fetch()
       }
     }
-        
+    
+    console.log("My context array", searched)
     history.push("/jobs")
-    // console.log(url)
   }
 
   return (
     <SearchBox>
         <Heading>What type of job are you looking for? </Heading>
         <Box>
-        <Inputfield type="text" value={search} onChange={e => setSearch(e.target.value)}/>
-        <SearchButton onClick={() => getJobList(search)}>Search</SearchButton>
+        <Inputfield type="text" value={keyInput} onChange={e => setKeyInput(e.target.value)}/>
+        <SearchButton onClick={() => getJobList(keyInput)}>Search</SearchButton>
         </Box>
     </SearchBox>
   )
