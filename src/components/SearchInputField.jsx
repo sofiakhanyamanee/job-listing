@@ -53,11 +53,16 @@ background: #b3e9c7;
 &: hover {
   background: lightgreen;
 }
+
+:focus {
+  outline: none;
+}
 `
 
 export default function SearchInputField() {
-  const {keyInput, setKeyInput, setJobs, searchedArr, setSearchedArr, msg, setMsg} = useContext(JobContext)    
+  const {keyInput, setKeyInput, setJobs, searchedArr, setSearchedArr } = useContext(JobContext)    
   const history = useHistory()
+
   
   function handle_fetch() {
     const urlStr = keyInput.replace(" ", "+");
@@ -69,10 +74,10 @@ export default function SearchInputField() {
 
       if (data.length === 0){
 
-        setMsg("No match")
         console.log("no matching")
-        history.push("/")
+        history.push("/error")
         
+
       } else {
 
       let newObj = {
@@ -82,6 +87,8 @@ export default function SearchInputField() {
       let updated_array = [...searchedArr, newObj];
       setSearchedArr(updated_array)
       setJobs(data)
+      history.push("/jobs")
+      console.log("My context array", searchedArr)
       }
 
     })   
@@ -100,23 +107,23 @@ export default function SearchInputField() {
       
       console.log("fetching")
       handle_fetch();
-
+      
     } else {
       
       let oldSearchFound = searchedArr.find(obj => obj.keyword === keyInput)
       console.log("Found in context", oldSearchFound)
+      
 
       if (oldSearchFound) {
         setJobs(oldSearchFound.data)
+        history.push("/jobs")
+        console.log("My context array", searchedArr)
       } else {
         console.log("not found in context, handle fetch")
         handle_fetch()
       }
+      
     }
-    
-      console.log("My context array", searchedArr)
-      history.push("/jobs")
-
     }
 
   }
@@ -128,7 +135,6 @@ export default function SearchInputField() {
         <Inputfield type="text" value={keyInput} onChange={e => setKeyInput(e.target.value)} />
         <SearchButton onClick={() => getJobList(keyInput)}>Search</SearchButton>
         </Box>
-        <h1>{msg}</h1>
     </SearchBox>
   )
 }

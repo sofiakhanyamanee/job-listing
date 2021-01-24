@@ -46,7 +46,6 @@ export default function JobList() {
   return (
     
     <Box>
-      <Heading>Jobs that match</Heading>
       <Wrapper>
 
         {jobs.length > 0 ? jobs.map(job => {
