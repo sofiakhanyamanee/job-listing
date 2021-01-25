@@ -30,19 +30,19 @@ export default function JobItemDetail({job}) {
   return (
     <Wrapper>
       <Box>
-      { job ? 
-      <div>
-        <img alt="img" src={job.company_logo}/>
-        <Paragraph>{job.created_at}</Paragraph>
-        <strong>{job.type}</strong>
-        <h2>{job.title}</h2>
-        <h2>{job.location}</h2>
-        <div dangerouslySetInnerHTML={{__html: job.description}}></div>
-        <a href={job.company_url}>{job.company_url}</a>      
-        {console.log("job", job)}
-      </div> 
+        { job ? 
+        <div>
+          <img className="company_logo" alt="img" src={job.company_logo}/>
+          <Paragraph>{job.created_at}</Paragraph>
+          <strong>{job.type}</strong>
+          <h2>{job.title}</h2>
+          <h2>{job.location}</h2>
+          <div dangerouslySetInnerHTML={{__html: job.description}}></div>
+          <a href={job.company_url}>{job.company_url}</a>      
+          {console.log("job", job)}
+        </div> 
 
-      : <h1>Loading</h1> }
+        : <h1>Loading</h1> }
       </Box>
     </Wrapper>
   )
