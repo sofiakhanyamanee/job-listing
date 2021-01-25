@@ -3,20 +3,20 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import JobItem from './JobItem'
 import { JobContext } from '../contexts/JobContextProvider'
+import { useHistory } from 'react-router-dom'
 
-const Box = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-background: whitesmoke;
-`
+
 
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 height: auto;
+// background: #c9e4de;
 width: 100vw;
+padding: 0 0 100px;
+// background: #edf2f4;
+// background: #D3DED6;
 background: whitesmoke;
 
 
@@ -28,31 +28,58 @@ background: whitesmoke;
 }
 `
 
+const BackButton = styled.button`
+width: 8vw;
+border-radius: 14pt;
+font-size: 17px;
+border: none;
+cursor: pointer;
+padding: 15px 0 15px 0;
+margin: 50px;
+background: #8AA895;
+color: white;
+font-weight: bold;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
+
+&: hover {
+  background: #B6C9BD;
+}
+:focus {
+  outline: none;
+}
+`
+
 const Heading = styled.h1`
 padding: 60px 0 0 0;
 `
 
 const JobBox = styled.div`
-border-bottom: 1px solid grey;
 width: 50%;
-padding: 20px 0 20px 0;
+padding: 40px;
 margin: 20px auto;
+background: white;
+border-radius: 8pt;
 `
 
 export default function JobList() {
 
   const { jobs } = useContext(JobContext)
+  const history = useHistory()
+
+  function toStartpage(){
+    history.push("/")
+  }
+
  
   return (
     
-    <Box>
       <Wrapper>
-
+        <BackButton onClick={() => toStartpage()}>Back</BackButton>
         {jobs.length > 0 ? jobs.map(job => {
           const jobco = job.id
           
           return (
-            <JobBox key={jobco}>
+            <JobBox className="jobcard" key={jobco}>
               <img alt="img" src={job.company_logo}/>
               <strong>Job type: {job.type}</strong>
               <h2>Title: {job.title}</h2>
@@ -64,6 +91,6 @@ export default function JobList() {
         }) : <Heading>Loading...</Heading> }
 
       </Wrapper>
-    </Box>
+
   )
 }

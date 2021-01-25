@@ -1,7 +1,8 @@
 import React from 'react'
+import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
-import JobList from './components/JobList';
+import JobListPage from './pages/JobListPage';
 import ErrorMsgPage from './pages/ErrorMsgPage';
 import JobItemDetailsPage from './pages/JobItemDetailsPage';
 import StartPage from './pages/StartPage';
@@ -18,7 +19,7 @@ function App() {
     <Wrapper>
         <Switch>
            <Route path="/jobs/:id" component={JobItemDetailsPage} />
-           <Route path="/jobs" component={JobList} />
+           <Route path="/jobs" component={JobListPage} />
            <Route path="/error" component={ErrorMsgPage} />
            <Route path="/" component={StartPage}/>
        </Switch>

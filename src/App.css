@@ -1,42 +1,24 @@
-.App {
-  text-align: center;
+.jobcard {
+  box-shadow: rgba(207, 206, 206, 0.432) 0px 4px 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.shape1 {
+  position: absolute;
+  left: -600px;
+  opacity: 0.1;
+  width: 50vw;
+  height: 70vh;
+  background-color: #a3a6bd;
+  border-radius: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.a-tag {
-  color: black;
+.shape2 {
+  position: absolute;
+  right: -350px;
+  top: -150px;
+  opacity: 0.1;
+  width: 40vw;
+  height: 65vh;
+  background-color:#808191;
+  border-radius: 100%;
 }

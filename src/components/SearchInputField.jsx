@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { JobContext } from '../contexts/JobContextProvider'
 
-const SearchBox = styled.div`
+const Wrapper = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-background: #13505b;
+background: whitesmoke;
+// background: #D3DED6;
 width: 100vw;
 height: 100vh;
 `
@@ -21,7 +22,7 @@ flex-direction: row;
 `
 
 const Heading = styled.h1`
-color: #ede7e3;
+color: #8AA895;
 margin-bottom: 40px;
 `
 const Inputfield = styled.input`
@@ -34,6 +35,7 @@ border: none;
 font-size: 17px;
 color: darkslategrey;
 margin-right: 20px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
 &:focus {
   outline: none;
@@ -48,10 +50,13 @@ font-size: 17px;
 border: none;
 cursor: pointer;
 padding: 15px 0 15px 0;
-background: #b3e9c7;
+background: #8AA895;
+color: white;
+font-weight: bold;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
 
 &: hover {
-  background: lightgreen;
+  background: #B6C9BD;
 }
 
 :focus {
@@ -96,7 +101,7 @@ export default function SearchInputField() {
 
   function getJobList() {
 
-    if ( keyInput.length === 0 || keyInput.trim() === "") {
+    if (keyInput.length === 0 || keyInput.trim() === "") {
 
       history.push("/")
       console.log("is empty")
@@ -104,7 +109,7 @@ export default function SearchInputField() {
     } else {
 
       if (searchedArr.length === 0) {
-      
+  
       console.log("fetching")
       handle_fetch();
       
@@ -129,12 +134,14 @@ export default function SearchInputField() {
   }
 
   return (
-    <SearchBox>
+    <Wrapper>
+        <div className="shape1"></div>
+        <div className="shape2"></div>
         <Heading>What type of job are you looking for? </Heading>
         <Box>
         <Inputfield type="text" value={keyInput} onChange={e => setKeyInput(e.target.value)} />
         <SearchButton onClick={() => getJobList(keyInput)}>Search</SearchButton>
         </Box>
-    </SearchBox>
+    </Wrapper>
   )
 }
