@@ -9,8 +9,6 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   background: whitesmoke;
-  // background: #D3DED6;
-  // width: 100vw;
   height: 100vh;
 `;
 
@@ -126,7 +124,7 @@ export default function SearchInputField() {
     <Wrapper>
       <div className="shape1"></div>
       <div className="shape2"></div>
-      <Heading>What type of job are you looking for? </Heading>
+      <Heading>What kind of job are you looking for? </Heading>
       <Box>
         <Inputfield
           type="text"

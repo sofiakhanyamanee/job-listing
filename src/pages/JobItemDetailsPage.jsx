@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import JobItemDetail from '../components/JobItemDetail'
 
 
@@ -12,9 +12,9 @@ export default function JobItemDetailsPage(props) {
     .then(res => res.json())
     .then(data => setJob(data))
   }
-  
   useEffect( () => {
     getDetails()
+    // eslint-disable-next-line
   }, [])
   
   return (

@@ -73,7 +73,6 @@ export default function JobItemDetail({ job }) {
             <h3>{job.location}</h3>
             <div dangerouslySetInnerHTML={{ __html: job.description }}></div>
             <a href={job.company_url}>{job.company_url}</a>
-            {console.log("job", job)}
           </div>
         ) : (
           <LoadingMsg>Loading...</LoadingMsg>

@@ -1,6 +1,5 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import { BrowserRouter } from "react-router-dom";
 import JobItemDetail from "../JobItemDetail";
 
 const payload = {
@@ -14,42 +13,42 @@ const payload = {
 };
 
 describe("Test jobItemDetail", () => {
-  it("renders back-btn", () => {
+  it("check if back-button exist with text 'Back'", () => {
     const wrapper = mount(<JobItemDetail />);
     expect(wrapper.find("button").text()).toBe("Back");
   });
 
-  it("renders job created at", () => {
+  it("check if p-tag contains 'created_at'", () => {
     const wrapper = mount(<JobItemDetail job={payload}/>);
     expect(wrapper.find("p").text()).toBe(payload.created_at);
   });
 
-  it("renders 'Loading' heading", () => {
+  it("check if heading exist with text 'loading'", () => {
     const wrapper = mount(<JobItemDetail />);
     expect(wrapper.find("h1").text()).toContain("Loading");
   });
 
-  it("renders a h2 with title correctly", () => {
+  it("check if heading exist with title", () => {
     const wrapper = shallow(<JobItemDetail job={payload} />);
     expect(wrapper.find("h2").at(0).text()).toContain(payload.title);
   });
 
-  it("renders img with alt and src correctly", () => {
+  it("check if img-src contains an img-url", () => {
     const wrapper = shallow(<JobItemDetail job={payload} />);
     expect(wrapper.find("img").prop("src")).toContain(payload.company_logo);
   });
 
-  it("renders a strong-tag correctly", () => {
+  it("check if strong-tag contains text 'time'", () => {
     const wrapper = shallow(<JobItemDetail job={payload} />);
     expect(wrapper.find("strong").text()).toContain("Time");
   });
 
-  it("renders description correctly", () => {
+  it("check if description renders correctly", () => {
     const wrapper = shallow(<JobItemDetail job={payload} />);
     expect(wrapper.find("div div").prop('dangerouslySetInnerHTML')).toEqual({__html: "Here at Tonies, we are changing"});
   });
 
-  it("renders a-tag href correctly", () => {
+  it("check if a-tag href correctly", () => {
     const wrapper = shallow(<JobItemDetail job={payload} />);
     expect(wrapper.find("a").prop('href')).toEqual(payload.company_url);
   });

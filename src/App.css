@@ -2,6 +2,7 @@ body {
   background: whitesmoke;
   overflow-x: hidden;
   max-width: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .jobcard {
@@ -10,9 +11,9 @@ body {
 
 .shape1 {
   position: absolute;
-  left: -600px;
+  left: -350px;
   opacity: 0.1;
-  width: 50vw;
+  width: 600px;
   height: 70vh;
   background-color: #a3a6bd;
   border-radius: 100%;
@@ -23,7 +24,7 @@ body {
   right: -350px;
   top: -150px;
   opacity: 0.1;
-  width: 40vw;
+  width: 600px;
   height: 65vh;
   background-color:#808191;
   border-radius: 100%;

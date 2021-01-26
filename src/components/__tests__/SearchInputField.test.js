@@ -1,35 +1,25 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import SearchInputField from '../SearchInputField'
-// import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { mount } from "enzyme";
+import SearchInputField from "../SearchInputField";
+import JobContextProvider from "../../contexts/JobContextProvider";
 
-// describe("Test search-inputfield", () => {
-//   it("renders an inputfield", () => {
-//     const wrapper = shallow(<SearchInputField/>)
-//     expect(wrapper.find("input"))
-//     // console.log(wrapper.debug());
-//     })
+describe("Test search-inputfield", () => {
+  it("check existing inputfield and simulate onChange", () => {
+    const wrapper = mount(
+      <JobContextProvider>
+        <SearchInputField />
+      </JobContextProvider>
+    );
+    wrapper.find("input").simulate("change", { target: { value: "React" } });
+    expect(wrapper.find("input").prop("value")).toContain("React");
+  });
 
-//   })
-
-  describe("Test search button", () => {
-    it("renders right button for search", () => {
-      const wrapper = mount(<SearchInputField/>)
-      expect(wrapper.find("button").text()).toContain('ear')
-      // console.log(wrapper.debug());
-      })
-  
-    })
-
-    describe("Test heading", () => {
-      it("renders a heading with right text", () => {
-        const wrapper = mount(<SearchInputField/>)
-        expect(wrapper.find("h1").text()).toContain('What')
-        // console.log(wrapper.debug());
-        })
-    
-      })
-
-
-    
-  
+  it("check if search button contains right text", () => {
+    const wrapper = mount(<SearchInputField />);
+    expect(wrapper.find("button").text()).toContain("ear");
+  });
+  it("check if heading contains right text", () => {
+    const wrapper = mount(<SearchInputField />);
+    expect(wrapper.find("h1").text()).toContain("What");
+  });
+});
