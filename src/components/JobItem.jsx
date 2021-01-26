@@ -28,9 +28,15 @@ export default function JobItem({ job }) {
         <strong>Job type: {job.type}</strong>
         <h2 className="title">Title: {job.title}</h2>
         <h3>Company: {job.company}</h3>
-        <div dangerouslySetInnerHTML={{__html: job.description.substring(0, 200) + "...",}}></div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: job.description.substring(0, 200) + "...",
+          }}
+        ></div>
         <div className="linkWrap">
-          <Link className="readMore" to={`/jobs/${job.id}`}>Read more</Link>
+          <Link className="readMore" to={`/jobs/${job.id}`}>
+            Read more
+          </Link>
         </div>
       </JobCard>
     </Wrapper>

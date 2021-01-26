@@ -22,12 +22,12 @@ const Wrapper = styled.div`
 `;
 
 const BackButton = styled.button`
-  width: 160px;
+  width: 150px;
   border-radius: 14pt;
   font-size: 17px;
   border: none;
   cursor: pointer;
-  padding: 15px 0 15px 0;
+  padding: 10px 0 10px 0;
   margin: 50px;
   background: #8aa895;
   color: white;

@@ -34,12 +34,12 @@ const BackButton = styled.button`
   position: absolute;
   top: 50px;
   left: 50px;
-  width: 160px;
+  width: 150px;
   border-radius: 14pt;
   font-size: 17px;
   border: none;
   cursor: pointer;
-  padding: 15px 0 15px 0;
+  padding: 10px 0 10px 0;
   background: #8aa895;
   color: white;
   font-weight: bold;
