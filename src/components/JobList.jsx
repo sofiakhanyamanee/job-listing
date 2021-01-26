@@ -1,5 +1,6 @@
 
-import React from 'react'
+import React, { useContext }  from 'react'
+import { JobContext } from '../contexts/JobContextProvider'
 import styled from 'styled-components'
 import JobItem from './JobItem'
 import { useHistory } from 'react-router-dom'
@@ -44,6 +45,7 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
 `
 
 export default function JobList() {
+  const { jobs } = useContext(JobContext)
   const history = useHistory()
 
   function toStartpage(){
@@ -53,7 +55,13 @@ export default function JobList() {
   return (
       <Wrapper>
         <BackButton onClick={() => toStartpage()}>Back</BackButton>
-        <JobItem/>
+        {jobs && jobs.map(job => {
+          const id = job.id         
+            return (
+            <JobItem key={id} job={job}/>
+            )
+        })}
+      
       </Wrapper>
   )
 }
