@@ -1,82 +1,84 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
+import React from "react";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background: whitesmoke;
-padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+  padding: 100px 0;
 
- & img {
-  width: 70px;
- }
-`
+  & img {
+    width: 70px;
+  }
+`;
 
 const Box = styled.div`
-width: 50%;
-padding: 50px;
-`
+  width: 50%;
+  padding: 50px;
+`;
 
 const Paragraph = styled.p`
-font-size: 14px;
-text-align: right;
-`
+  font-size: 14px;
+  text-align: right;
+`;
 
 const LoadingMsg = styled.h1`
-text-align: center;
-padding-top: 40vh;
-`
+  text-align: center;
+  padding-top: 40vh;
+`;
 
 const BackButton = styled.button`
-position: absolute;
-top: 50px;
-left: 50px;
-width: 160px;
-border-radius: 14pt;
-font-size: 17px;
-border: none;
-cursor: pointer;
-padding: 15px 0 15px 0;
-background: #8AA895;
-color: white;
-font-weight: bold;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 160px;
+  border-radius: 14pt;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  padding: 15px 0 15px 0;
+  background: #8aa895;
+  color: white;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
 
-&: hover {
-  background: #B6C9BD;
-}
-:focus {
-  outline: none;
-}
-`
+  &: hover {
+    background: #b6c9bd;
+  }
+  :focus {
+    outline: none;
+  }
+`;
 
-export default function JobItemDetail({job}) {
-  const history = useHistory()
+export default function JobItemDetail({ job }) {
+  const history = useHistory();
 
-  function toJobs(){
-    history.push("/jobs")
+  function toJobs() {
+    history.push("/jobs");
   }
 
   return (
     <Wrapper>
       <BackButton onClick={() => toJobs()}>Back</BackButton>
       <Box>
-        { job ? 
+        {job ? (
           <div>
-            <img className="company_logo" alt="img" src={job.company_logo}/>
+            <img className="company_logo" alt="img" src={job.company_logo} />
             <Paragraph>{job.created_at}</Paragraph>
             <strong>{job.type}</strong>
             <h2>{job.title}</h2>
-            <h2>{job.location}</h2>
-            <div dangerouslySetInnerHTML={{__html: job.description}}></div>
-            <a href={job.company_url}>{job.company_url}</a>      
+            <h3>{job.location}</h3>
+            <div dangerouslySetInnerHTML={{ __html: job.description }}></div>
+            <a href={job.company_url}>{job.company_url}</a>
             {console.log("job", job)}
-          </div> 
-        : <LoadingMsg>Loading...</LoadingMsg> }
+          </div>
+        ) : (
+          <LoadingMsg>Loading...</LoadingMsg>
+        )}
       </Box>
     </Wrapper>
-  )
+  );
 }

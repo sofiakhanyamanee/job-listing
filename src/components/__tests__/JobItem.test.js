@@ -26,12 +26,12 @@ describe("Test if jobItem renders correctly", () => {
 
   it("renders img with alt and src correctly", () => {
     const wrapper = shallow(<JobItem job={payload}/>)
-    expect(wrapper.find("img").prop('src')).toContain('https://jobs.github.com/img')
+    expect(wrapper.find("img").prop('src')).toContain(payload.company_logo)
     // console.log(wrapper.debug());
     })
 
-    it("Test link to", ()=> {
+    it("renders link correctly", ()=> {
       const wrapper = shallow(<JobItem job={payload}/>)
-      expect(wrapper.find("Link").prop('to')).toBe("/jobs/12")
+      expect(wrapper.find("Link").prop('to')).toBe(`/jobs/${payload.id}`)
     });
   })
