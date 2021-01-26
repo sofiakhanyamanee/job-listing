@@ -5,11 +5,11 @@ export const JobContext = createContext({})
 export default function JobContextProvider({children}) {
   const [keyInput, setKeyInput] = useState("")
   const [jobs, setJobs] = useState([])
-  const [searchedArr, setSearchedArr] = useState([])
+  const [dataStorage, setDataStorage] = useState([])
 
 
   return (
-    <JobContext.Provider value={{keyInput, setKeyInput, jobs, setJobs, searchedArr, setSearchedArr}}>
+    <JobContext.Provider value={{keyInput, setKeyInput, jobs, setJobs, dataStorage, setDataStorage}}>
       {children}
     </JobContext.Provider>
   )

@@ -1,3 +1,9 @@
+body {
+  background: whitesmoke;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 .jobcard {
   box-shadow: rgba(207, 206, 206, 0.432) 0px 4px 20px;
 }
@@ -21,4 +27,28 @@
   height: 65vh;
   background-color:#808191;
   border-radius: 100%;
+}
+
+.readMore{
+  background-color: #8AA895;
+  color: white;
+  border-radius: 7pt;
+  font-size: 15px;
+  padding: 6px 20px;
+  text-decoration: none;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
+}
+
+.readMore:hover {
+  background: #B6C9BD;
+}
+.readMore:focus {
+  outline: none;
+}
+
+.linkWrap{
+  padding-top: 25px;
+  width: 100%;
+  /* background-color: red; */
 }

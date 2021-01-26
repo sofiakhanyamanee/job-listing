@@ -7,27 +7,29 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-background: #13505b;
 width: 100vw;
 height: 100vh;
 `
 
 const Heading = styled.h1`
-color: #ede7e3;
+color: #8AA895;
 margin-bottom: 40px;
 `
 
 const BackButton = styled.button`
 width: 200px;
 border-radius: 14pt;
-font-size: 17px;
 border: none;
 cursor: pointer;
 padding: 15px 0 15px 0;
-background: #b3e9c7;
+background: #8AA895;
+color: white;
+font-weight: bold;
+font-size: 16px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
 
 &: hover {
-  background: #7DC9A9;
+  background: #B6C9BD;
 }
 
 :focus {

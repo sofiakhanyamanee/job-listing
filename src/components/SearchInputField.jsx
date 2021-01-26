@@ -10,7 +10,7 @@ align-items: center;
 flex-direction: column;
 background: whitesmoke;
 // background: #D3DED6;
-width: 100vw;
+// width: 100vw;
 height: 100vh;
 `
 
@@ -46,7 +46,7 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 const SearchButton = styled.button`
 width: 200px;
 border-radius: 14pt;
-font-size: 17px;
+font-size: 16px;
 border: none;
 cursor: pointer;
 padding: 15px 0 15px 0;
@@ -65,10 +65,9 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px;
 `
 
 export default function SearchInputField() {
-  const {keyInput, setKeyInput, setJobs, searchedArr, setSearchedArr } = useContext(JobContext)    
+  const {keyInput, setKeyInput, setJobs, dataStorage, setDataStorage } = useContext(JobContext)    
   const history = useHistory()
-
-  
+ 
   function handle_fetch() {
     const urlStr = keyInput.replace(" ", "+");
     const url = `https://us-central1-wands-2017.cloudfunctions.net/githubjobs?description=${urlStr}`
@@ -78,59 +77,45 @@ export default function SearchInputField() {
     .then(data => {
 
       if (data.length === 0){
-
         console.log("no matching")
         history.push("/error")
-        
-
       } else {
-
-      let newObj = {
-        keyword: keyInput,
-        data
+        let newObj = {
+          keyword: keyInput,
+          data
+        }
+        let updatedStorage = [...dataStorage, newObj];
+        setDataStorage(updatedStorage)
+        setJobs(data)
+        history.push("/jobs")
+        console.log("My context array", dataStorage)
       }
-      let updated_array = [...searchedArr, newObj];
-      setSearchedArr(updated_array)
-      setJobs(data)
-      history.push("/jobs")
-      console.log("My context array", searchedArr)
-      }
-
     })   
   }
 
   function getJobList() {
 
     if (keyInput.length === 0 || keyInput.trim() === "") {
-
       history.push("/")
       console.log("is empty")
-
     } else {
-
-      if (searchedArr.length === 0) {
-  
+      if (dataStorage.length === 0) {
       console.log("fetching")
-      handle_fetch();
-      
-    } else {
-      
-      let oldSearchFound = searchedArr.find(obj => obj.keyword === keyInput)
-      console.log("Found in context", oldSearchFound)
-      
-
-      if (oldSearchFound) {
-        setJobs(oldSearchFound.data)
-        history.push("/jobs")
-        console.log("My context array", searchedArr)
-      } else {
-        console.log("not found in context, handle fetch")
-        handle_fetch()
+      handle_fetch();    
+      } else {  
+        let oldSearchFound = dataStorage.find(obj => obj.keyword === keyInput)
+        console.log("Found in context", oldSearchFound)
+        
+        if (oldSearchFound) {
+          setJobs(oldSearchFound.data)
+          history.push("/jobs")
+          console.log("My context array", dataStorage)
+        } else {
+          console.log("not found in context, handle fetch")
+          handle_fetch()
+        }  
       }
-      
     }
-    }
-
   }
 
   return (
